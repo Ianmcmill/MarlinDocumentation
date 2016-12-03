@@ -683,13 +683,16 @@ These are the option for 3-point probing by specifying each one of their coordin
 {% highlight cpp %}
 #define X_PROBE_OFFSET_FROM_EXTRUDER -44  // X offset: -left  [of the nozzle] +right
 #define Y_PROBE_OFFSET_FROM_EXTRUDER -8  // Y offset: -front [of the nozzle] +behind
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -2.50   // Z offset: -below [the nozzle](for most negative! positive when using tilt probes or the nozzle based probes)
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -2.50   // Z offset: -below [the nozzle](for most negative! positive when using tilt probes or the nozzle based probes) A negative value for `Z_PROBE_OFFSET_FROM_EXTRUDER` means the probe is (geographically) higher then the nozzle. You don't want the stiff probe to be below the nozzle for obvious reasons!
+E.g. A (stiff) inductive probe needs a negative value. The tip of the probe is higher then the nozzle. Else the probe will physically hit the print bed before the nozzle which is to be avoided.
+
+
 {% endhighlight %}
 
 This is the position of your probe from your nozzle. To determine exact location, use relative position by specifying `G92 x0 y0 z0`, then slowly work your way to find exact probe point of your probe. Use Pronterface/repeter-host to get your own value for the above offset setup and issue `M114` to get the exact values.
 
 {% panel info EEPROM: Z-Probe Offset %}
-Will be pulled from `#define Z_PROBE_OFFSET_FROM_EXTRUDER -2.50` and the command are `M851`.
+Will be pulled from `#define Z_PROBE_OFFSET_FROM_EXTRUDER -2.50` and the command is `M851`.
 {% endpanel %}
 
 ***
